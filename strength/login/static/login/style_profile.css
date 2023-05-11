@@ -1,0 +1,163 @@
+.container-fluid{
+        margin-top: 5vh !important;
+        border-radius: 20px;
+        background-color: white;
+        box-shadow: 0 20px 24px 0 rgba(0, 0, 0, 0.2), 0 21px 35px 0 rgba(0, 0, 0, 0.19);
+        width: 90%;
+        height: auto;
+        min-height: 80vh;
+        display: grid;
+}
+
+body{
+        padding-top: 74px;
+        background: linear-gradient(90deg, rgba(255,69,0,1) 0%, rgba(255, 165, 0,1) 100%);
+}
+
+.profile-picture img{
+        margin-top: 10%;
+        margin-bottom: 10%;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 50%;
+        height: 160px;
+}
+
+.box{
+        height: 100%;
+}
+
+.basic-information{
+        padding: 20px;
+        padding-left: 40px;
+}
+
+.description{
+        padding: 20px;
+        padding-left: 40px;
+}
+
+.text-left{
+        padding: 0;
+        text-align: left;
+        display: grid;
+}
+
+.text-center, .profile-username{
+        text-align: center;
+        display: grid;
+}
+
+.button-header p{
+        padding-top: 10px;
+        padding-bottom: 10px;
+}
+
+.button-header h1{
+        padding-top: 40px;
+}
+
+@media screen and (max-width: 992px){ 
+        .borderbottom{
+                border-bottom: 1px solid #dee2e6!important;
+                border-left: 1px solid #dee2e6!important;
+        }
+        .basic-information{
+                border-left: 1px solid #dee2e6!important;
+        }
+        .box{
+                height:auto !important;
+        }
+        .padding-bottom{
+                padding-bottom: 20vh;
+        }
+        .container-fluid{
+                display: block;
+                min-height: 60vh;
+        }
+}
+
+#buttonLeft:hover, #buttonCenter:hover, #buttonRight:hover{
+        background-color: rgba(255, 69, 0, .5);
+        transition: 0.5s;
+}
+
+.choosed{
+        border-top: 1px solid black!important;
+        border-left: 1px solid black!important;
+        border-right: 1px solid black!important;
+        border-bottom: none;
+
+}
+
+.notchoosed{
+        border-bottom: 1px solid black!important;
+}
+
+.object-list{
+        padding-left: 30px;
+}
+
+.button-item{
+        height:100px;
+        padding: 0;
+}
+
+.button-item h3{
+        font-weight: 600;
+}
+
+.button-item1{
+        border-bottom: 1px solid black!important;
+}
+
+.between{
+        border-bottom: 1px solid black!important;
+}
+
+
+#buttonLeft, #buttonCenter, #buttonRight{
+        height: 100%;
+        padding: 0;
+}
+
+td a{
+        color: orangered;
+}
+
+td a:hover{
+        text-decoration: none;
+        color: black;
+}
+
+.listLeft .table th, .listCenter .table th, .listRight .table th{
+        border-top: 0px !important;
+}
+
+.borderr{
+        border-right: 1px solid #dee2e6!important;;
+}
+
+.borderb{
+        border-bottom: 1px solid #dee2e6!important;;
+}
+
+.delete-button{
+        background-color: red;
+        border-color: white;
+        border-radius: 4px;
+        transition: 0.25s
+}
+
+.delete-button:hover{
+        background-color: white;
+        border-color: red;
+}
+
+i.fa-solid{
+        color: white;
+}
+
+.delete-button:hover .fa-solid{
+        color: red;
+}

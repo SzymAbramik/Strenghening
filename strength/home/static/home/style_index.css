@@ -1,0 +1,197 @@
+/*
+header{
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(rgba(4,9,30,0.7), rgba(3,9,30,0.7)),url(mainpageheader.jpg) no-repeat 50% 50%;
+  background-size: cover;
+  background-attachment: fixed;
+}
+*/
+.banner-image {
+  background: linear-gradient(rgba(4,9,30,0.7), rgba(3,9,30,0.7)),url(mainpageheader.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.text-box{
+  width: 90%;
+  color: #fff;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+
+.hero-btn{
+  display:inline-block;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 12px 34px;
+  font-size: 13px;
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+.hero-btn:hover{
+  border: 1px solid orangered;
+  background: orangered;
+  transition: 1s;
+  text-decoration: none;
+}
+
+.hero-btn a{
+  color: #fff !important;
+  text-decoration: none;
+}
+
+.widgets, .stats, .comments{
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding-top: 100px;
+}
+
+h1{
+  font-size: 46px;
+  font-weight: 600;
+  padding: 10px;
+}
+
+p{
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 22px;
+  padding: 10px;
+}
+
+.layer{
+  background: transparent;
+  height: 520px;
+  width: 520px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  transition: 0.5s;
+  border-radius: 50%;
+}
+
+.layer:hover{
+  background: rgba(255, 69, 0, 0.7);
+}
+
+.layer h3{
+  width: 100%;
+  font-weight: 500;
+  color: #fff;
+  font-size: 26px;
+  bottom:0px;
+  left:50%;
+  transform: translatex(-50%);
+  position: absolute;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.layer:hover h3{
+  bottom: 49%;
+  opacity: 1;
+}
+
+.stats-text-box{
+  margin-bottom: 5%;
+}
+
+.stats-text-box h3{
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.stats-text-box p{
+  line-height: 175%;
+}
+
+.stats-row{
+  height: 33%;
+  width: 100%;
+}
+
+.stats-row a{
+  color: orangered;
+  font-weight: 550;
+}
+
+.stats-row h3{
+  color:orangered;
+  font-size: 30px;
+  font-weight: 550;
+  padding: 10px;
+}
+
+.stats-row h3:hover, a:hover{
+  color:black;
+  text-decoration: none;
+}
+
+.type-row{
+  margin-left: 5%;
+  height: 33%;
+  width: auto;
+  text-align: center !important;
+  
+}
+
+.type-row h3{
+  text-align: center !important;
+  background-color: orangered;
+  padding: 20px;
+  border-radius: 45px;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.stats{
+  text-align: left !important;
+}
+
+.comment-section{
+  border-radius: 20px;
+  margin-bottom: 5%;
+  background: rgba(255, 69, 0, 0.3);
+  padding: 15px;
+  margin: 20px;
+  font-size: 15px;
+}
+
+.comment-section img{
+  height: 60px;
+  margin-top: 10%;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.author-info{
+  padding: 10px;
+  padding-left: 0px;
+}
+
+.comment-section p{
+  padding-left: 0;
+}
+
+.comment-section a{
+  color: orangered;
+  font-weight: 550;
+}
+.comment-section a:hover{
+  color:black;
+}
+
+.comment-section .fa{
+  color: orangered;
+}
+

@@ -1,0 +1,33 @@
+{% extends 'home/base.html' %}
+
+{% block head %}
+
+    {% load static %}
+    <link href="{% static 'forum/style_add.css' %}" rel="stylesheet" >
+    
+{% endblock %}
+
+{% block body %}
+<div class="padding-top"></div>
+<div class="container-fluid">
+        <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-title question-row center">
+                <h1>Add Question</h1>
+            </div>
+            <div class="form-post-title question-row">
+                <input type="text" name="name" class="form-control" placeholder="Question" maxlength="100" required="" id="id_name">
+            </div>
+            <div class="form-post-detail question-row">
+                <textarea name="context" cols="40" rows="10" class="form-control" placeholder="Details of Question" maxlength="1000" required="" id="id_context"></textarea>
+            </div>
+            <div class="form-post-button question-row center">
+                <button class="form-submit">Add Question</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="padding-bottom"></div>
+{% endblock %}
+

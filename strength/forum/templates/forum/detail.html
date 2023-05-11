@@ -1,0 +1,126 @@
+{% extends 'home/base.html' %}
+
+{% block head %}
+    {% load static %}
+    <link href="{% static 'forum/style_detail.css' %}" rel="stylesheet" >
+{% endblock %}
+
+{% block body %}
+<div class="padding-top"></div>
+<div class="container-fluid">
+  <!-- HEAD POST -->
+  <div class="row">
+    <div class="col-lg-2 col-4">
+      <div class="row justify-content-center"><img class="rounded-circle post-image" style="width: 140px; height: 140px" src="{{ object.author.image.url }}"></div>
+    </div>
+    <div class="col-lg-10 col-8">
+      <div class="row">
+        <h1>{{ object.name }}</h1>
+      </div>
+      <div class="row comment-stats">
+        <p><a href="#">{{ object.author }}</a> - {{ object.start_date }}</p>
+      </div>
+      <div class="row">
+        <p>{{ object.context }}</p>
+      </div>
+    </div>
+  </div>
+  <!-- ANSWEARS -->
+  <div class="row">
+    {% if not object.comments.all %}
+    <div class="col"><div class="row justify-content-center border-top"><h3 style="padding:30px;"> No comments yet </h3></div></div>
+    {% else %}
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th style="width: 10%" scope="col"></th>
+            <th style="width: 80%" scope="col">Answears</th>
+            <th style="width: 10%" scope="col">Stats</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for comment in object.comments.all %}
+            <tr>
+              <td><img class="rounded-circle profile-picture" style="width: 100px; height: 100px" src="{{ comment.author.image.url }}"></td>
+              <td><p class="comment-stats"><a href="{{ post.get_absolute_url }}">{{ comment.author }}</a> - {{ comment.start_date }}</p><p class="comment-content">{{ comment.context }}</p></td>
+              <td>
+                <div class="row auth">
+                  <!-- LIKES FORM -->
+                  <form action="{% url 'forum:like' %}" method="POST" style="display: inline-block;" id='{{comment.id}}' class="like-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                    {% if user.is_authenticated %} 
+                      <button type="submit" class="comment-like like-btn{{comment.id}}">
+                        {% if user not in comment.likes.all %}
+                          Like
+                        {% else %}
+                          Unlike
+                        {% endif %}
+                      </button>
+                    {% else %}
+                      <a href="{% url 'login:login' %}">Login</a> to like
+                    {% endif %}
+                  </form>
+                </div>
+                <div class="row stats-likes" >
+                  <p class="like-count{{comment.id}}"> {{comment.likes.all.count}} </p><p>&nbsp;-&nbsp;likes</p>
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  </div>
+  <!-- COMMENT FORM -->
+  <div class="row justify-content-center">
+    <form method="POST" action="">
+      {% csrf_token %}
+      <textarea name="context" cols="80" rows="5" maxlength="1000" required="" id="id_context" style="margin-top:20px; margin-bottom:20px;" required placeholder="Write your answear here!!"></textarea>
+      <input type="hidden" name="post" value="6" id="id_post" style="margin-top:5px; margin-bottom:5px;">
+      <div class="form-post-button">
+          <button class="comment-like" type="submit">Add Question</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="padding-bottom"></div>
+
+<script>
+  $('.like-form').submit(function(e){
+    e.preventDefault()
+    const comment_id = $(this).attr('id')
+    const likeText = $(`.like-btn${comment_id}`).text()
+    const trim = $.trim(likeText)
+    const url = $(this).attr('action')
+    let res;
+    const likes = $(`.like-count${comment_id}`).text()
+    const trimCount = parseInt(likes)
+    
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+            'comment_id':comment_id,
+        },
+        success: function(response) {
+            if(trim === 'Unlike') {
+                $(`.like-btn${comment_id}`).text('Like')
+                res = trimCount - 1
+            } else {
+                $(`.like-btn${comment_id}`).text('Unlike')
+                res = trimCount + 1
+            }
+
+            $(`.like-count${comment_id}`).text(res)
+        },
+        error: function(response) {
+            console.log('error', response)
+        }
+    })
+
+})
+</script>
+
+{% endblock %}

@@ -1,0 +1,156 @@
+{% extends 'home/base.html' %}
+
+{% block head %}
+    {% load static %}
+    <link href="{% static 'home/style_index.css' %}" rel="stylesheet" >
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+  <!-- Banner Image  -->
+  <div class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center"></div>
+  <div class="row row-1">
+    <div class="main-page-photo"></div>
+    <div class="text-box">
+      <h1>DISCOVER NEW HORIZONS WITH OUR SITE</h1>
+      <p>Et sapiente dolores qui repudiandae tempora et ullam dolor est distinctio repudiandae sit quaerat natus qui ipsa voluptatum est iure vitae. 
+      <br>Et aliquid nobis est quam autem aut minima dolorem! Ad doloribus voluptate qui neque voluptatibus est recusandae sint. Qui dolor obcaecati sed rerum eligendi 
+      <br>et quibusdam asperiores eum placeat cupiditate id sint optio ab corrupti voluptatem.</p>
+      <div class="hero-btn">
+        <a href="{% url 'login:register'%}">Join us today!</a>
+      </div>
+    </div>
+  </div>
+<section class="widgets">
+  <h1>Our webside provides lot of possibilities</h1><br>
+  <p>Et sapiente dolores qui repudiandae tempora et ullam dolor est distinctio repudiandae sit quaerat natus qui ipsa voluptatum est iure vitae. </p>
+  <div class="row" style="margin-top:5%;">
+    <div class="col">
+      <img src="static/home/forum.png">
+      <a href="{% url 'forum:index'%}">
+        <div class="layer">
+          <h3>FORUM</h3>
+        </div>
+      </a>
+    </div>
+    <div class="col">
+      <img src="static/home/diet.png">
+      <a href="{% url 'diet:index'%}">
+        <div class="layer">
+          <h3>DIET</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="row" style="margin-top:5%;">
+    <div class="col">
+      <img src="static/home/training.png">
+      <a href="{% url 'training:index'%}">
+        <div class="layer">
+          <h3>TRAINING</h3>
+        </div>
+      </a>
+    </div>
+    <div class="col">
+      <img src="static/home/bmicalc.png">
+      <a href="{% url 'bmicalc:index'%}">
+        <div class="layer">
+          <h3>BMI CALCULATOR</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+<section class="stats">
+  <div class="row" style="margin-top:5%;">
+    <div class="col-12 col-lg-5 stats-text-box">
+      <h3>Troche do powiedzenia o naszej stronie!</h3>
+      <p>Et sapiente dolores qui repudiandae tempora et ullam dolor est distinctio repudiandae sit quaerat natus qui ipsa voluptatum est iure vitae. 
+      Et aliquid nobis est quam autem aut minima dolorem! Ad doloribus voluptate qui neque voluptatibus est recusandae sint. Qui dolor obcaecati sed rerum eligendi 
+      et quibusdam asperiores eum placeat cupiditate id sint optio ab corrupti voluptatem.</p>
+    </div>
+    <div class="col-3 col-lg-2">
+      <div class="type-row align-self-center"><h3>POST</h3></div>
+      <div class="type-row"><h3>DIET</h3></div>
+      <div class="type-row"><h3>TRAIN</h3></div>
+    </div>
+    <div class="col-9 col-lg-5">
+      <div class="stats-row">
+        <a href=""><h3>{{post.name}}</h3></a>
+        <p class="fifty-chars">{{post.context}}</p>
+        <p>Posted by <a href="">{{post.author}}</a> on {{post.start_date}}</p>
+      </div>
+      <div class="stats-row">
+        <a href=""><h3>{{diet.name}}</h3></a>
+        <p class="fifty-chars">{{diet.context}}</p>
+        <p>Posted by <a href="">{{diet.author}}</a> on {{diet.date}}</p>
+      </div>
+      <div class="stats-row">
+        <a href=""><h3>{{training.name}}</h3></a>
+        <p class="fifty-chars">{{training.context}}</p>
+        <p>Posted by <a href="">{{training.author}}</a> on {{training.date}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="comments">
+  <h1>OPINIONS</h1>
+  <p>Couple of comments to show how people talk about the content on our site</p>
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-5 comment-section">
+      <div class="row">
+        <div class="col-3">
+          <img src="{{ review_diet.author.image.url }}">
+        </div>
+        <div class="col-9">
+          <div class="author-info row">
+            <a href="">{{review_diet.author}}</a>&nbsp;
+            {{review_diet.date}}
+          </div>
+          <div class="row">
+            <span>
+              <i class="fa fa-star{% if review_diet.rating == 0.5 %}-half-o{% elif review_diet.rating < 1 %}-o {% endif %}" aria-hidden="true"></i>
+              <i class="fa fa-star{% if review_diet.rating == 1.5 %}-half-o{% elif review_diet.rating < 2 %}-o {% endif %}" aria-hidden="true"></i>
+              <i class="fa fa-star{% if review_diet.rating == 2.5 %}-half-o{% elif review_diet.rating < 3 %}-o {% endif %}" aria-hidden="true"></i>
+              <i class="fa fa-star{% if review_diet.rating == 3.5 %}-half-o{% elif review_diet.rating < 4 %}-o {% endif %}" aria-hidden="true"></i>
+              <i class="fa fa-star{% if review_diet.rating == 4.5 %}-half-o{% elif review_diet.rating < 5 %}-o {% endif %}" aria-hidden="true"></i>
+            </span>
+          </div>
+          <div class="row">
+            <p>{{review_diet.context}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-5 comment-section">
+      <div class="row">
+        <div class="col-3">
+          <img src="{{ review_training.author.image.url }}">
+        </div>
+        <div class="col-9">
+          <div class="author-info row">
+            <a href="">{{review_training.author}}</a>&nbsp;
+            {{review_training.date}}
+          </div>
+          <div class="row">
+            <span>
+              <i class="fa fa-star{% if review_training.rating == 0.5 %}-half-o{% elif review_training.rating < 1 %}-o {% endif %}" aria-hidden="true"></i>
+              <i class="fa fa-star{% if review_training.rating == 1.5 %}-half-o{% elif review_training.rating < 2 %}-o {% endif %}" aria-hidden="true"></i>
+              <i class="fa fa-star{% if review_training.rating == 2.5 %}-half-o{% elif review_training.rating < 3 %}-o {% endif %}" aria-hidden="true"></i>
+              <i class="fa fa-star{% if review_training.rating == 3.5 %}-half-o{% elif review_training.rating < 4 %}-o {% endif %}" aria-hidden="true"></i>
+              <i class="fa fa-star{% if review_training.rating == 4.5 %}-half-o{% elif review_training.rating < 5 %}-o {% endif %}" aria-hidden="true"></i>
+            </span>
+          </div>
+          <div class="row">
+            <p>{{review_training.context}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
+
+

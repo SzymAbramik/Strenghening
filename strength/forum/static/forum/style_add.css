@@ -1,0 +1,83 @@
+body{
+        background: linear-gradient(90deg, rgba(255,69,0,1) 0%, rgba(255, 165, 0,1) 100%);
+}
+
+.padding-top{
+	height: 20vh;
+}
+
+@media screen and (max-width: 992px){ 
+    .padding-bottom{
+            height: 33vh !important;
+    }
+
+}
+
+
+.padding-bottom{
+	height: 20vh;
+}
+
+.container-fluid{
+        width: 600px;
+        background-color: white;
+        border-radius: 50px;
+        box-shadow: 0 20px 24px 0 rgba(0, 0, 0, 0.2), 0 21px 35px 0 rgba(0, 0, 0, 0.19);
+        margin-top: 10vh;
+        height: auto;
+        padding: 30px;
+}
+
+.question-row{
+    padding: 6px;
+    margin: 6px;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-post-button{
+    margin: 0px;
+}
+
+.form-group{
+    padding: 0px;
+    margin: 0px;
+}
+
+.form-title h1{
+	font-weight: 600;
+}
+
+input:hover{
+	border: 1px solid orangered;
+}
+
+textarea:hover{
+	border: 1px solid orangered;
+}
+
+.form-control:focus{
+	border-color: black !important;
+	box-shadow: none !important;
+}
+
+
+.form-submit{
+    margin-top: 10px;
+    background-color: orangered;
+    color: white;
+    transition: 0.5s;
+    border-radius: 15px;
+    padding: 7px;
+    padding-left: 13px;
+    padding-right: 13px;
+    border: 0;
+}
+
+.form-submit:hover{
+    background-color: rgba(255,69,0,0.7) !important;
+}

@@ -1,0 +1,220 @@
+{% extends 'home/base.html' %}
+
+{% block head %}
+    {% load static %}
+    <link href="{% static 'login/style_profile.css' %}" rel="stylesheet" >
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+  <div class="row box">
+    <div class="col-lg-3 col-12 borderr">
+      <div class="row">
+        <div class="col-lg-12 col-3 borderb borderright">
+          <div class="row profile-picture">
+            <img class="rounded-circle" src="{{ profile.image.url }}">
+          </div>
+          <div class="row profile-username"><h3>{{ profile.user.username }}</h3></div>
+        </div>
+        <div class="col-lg-12 col-9 text-box h-100">
+          <div class="row borderb basic-information">
+            <div class="col">
+              <div class="row"><h3>BASIC INFORMATION</h3></div>
+              <div class="row">Email: {{ profile.user.email }}</div>
+              <div class="row">With us since: {{ profile.user.date_joined }}</div>
+              {% if request.user != profile.user %}
+              <div class="row">Last active: {{ profile.user.last_login }}</div>
+              {% endif %}
+              <div class="row">
+                <div class="col text-left">
+                  Reviews: {{ reviews }}
+                </div>
+                <div class="col text-left">
+                  Answears: {{ comments }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row description borderbottom">
+            <div class="col">
+              <div class="row">
+                <h3>DESCRIPTION: </h1>
+              </div>
+              <div class="row">
+                <p>{{ profile.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9 col-12">
+      <div class="row text-center button-header">
+        <h1>General activity of {{profile.user.username}}</h1>
+      </div>
+      <div class="row text-center button-header borderb">
+        <p>Here you can take a look at someones activity on our page, depending on pushed button.</p>
+      </div>
+      <div class="row justify-content-center" style="padding-bottom:20px;">
+        <div class="col between button-item button-item1"></div>
+        <div class="col-3 button-item">
+          <div id="buttonLeft" class="text-center button-item1 align-items-center"><h3>POSTS</h3></div>
+        </div>
+        <div class="col-3 button-item">
+          <div id="buttonCenter" class="text-center button-item1 align-items-center"><h3>DIETS</h3></div>
+        </div>
+        <div class="col-3 button-item">
+          <div id="buttonRight" class="text-center button-item1 align-items-center"><h3>TRENINGS</h3></div>
+        </div>
+        <div class="col between button-item button-item1"></div>
+      </div>
+      <!-- First Table -->
+      <div class="col listLeft justify-content-center" style="display: none;">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th style="width: {% if request.user == profile.user %}50%{% else %}60%{% endif %}" scope="col">Question</th>
+              {% if request.user == profile.user %}
+                <th style="width: 10%" scope="col"></th>
+              {% endif %}
+              <th style="width: 30%" scope="col">Creating Date</th>
+              <th style="width: 10%" scope="col">Activity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for post in posts %}
+              <tr>
+                <td><a href="{{post.get_absolute_url}}">{{ post.name }}</a></td>
+                {% if request.user == profile.user %}
+                  <td>
+                    <form action="{% url 'forum:delete' post.slug %}" method="POST">
+                      {% csrf_token %}
+                      <input type="hidden" name="post_slug" value="{{ post.slug }}"/>
+                      <button type="submit" class="delete-button"><i class="fa-solid fa-trash-can"></i></button>
+                    </form>
+                  </td>
+                {% endif %}
+                <td>{{ post.start_date }}</td>
+                <td>{{ post.number }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- Second Table -->
+      <div class="col listCenter" style="display: none;">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th style="width: {% if request.user == profile.user %}50%{% else %}60%{% endif %}" scope="col">Question</th>
+              {% if request.user == profile.user %}
+                <th style="width: 10%" scope="col"></th>
+              {% endif %}
+              <th style="width: 30%" scope="col">Creating Date</th>
+              <th style="width: 10%" scope="col">Activity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for diet in diets %}
+              <tr>
+                <td><a href="{{diet.get_absolute_url}}">{{ diet.name }}</a></td>
+                {% if request.user == profile.user %}
+                  <td><button class="delete-button"><i class="fa-solid fa-trash-can"></i></button></td>
+                {% endif %}
+                <td>{{ diet.date }}</td>
+                <td>{{ diet.number }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- Third Table -->
+      <div class="col listRight" style="display: none;">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th style="width: {% if request.user == profile.user %}50%{% else %}60%{% endif %}" scope="col">Question</th>
+              {% if request.user == profile.user %}
+                <th style="width: 10%" scope="col"></th>
+              {% endif %}
+              <th style="width: 30%" scope="col">Creating Date</th>
+              <th style="width: 10%" scope="col">Activity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for training in trainings %}
+              <tr>
+                <td><a href="{{training.get_absolute_url}}">{{ training.name }}</a></td>
+                {% if request.user == profile.user %}
+                  <td><button class="delete-button"><i class="fa-solid fa-trash-can"></i></button></td>
+                {% endif %}
+                <td>{{ training.date }}</td>
+                <td>{{ training.number }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="padding-bottom"></div>
+<script>
+  const buttonLeft = document.querySelector('#buttonLeft');
+  const buttonCenter = document.querySelector('#buttonCenter');
+  const buttonRight = document.querySelector('#buttonRight');
+
+  const listLeft = document.querySelector('.listLeft');
+  const listCenter = document.querySelector('.listCenter');
+  const listRight= document.querySelector('.listRight');
+
+  buttonLeft.addEventListener('click', () => {
+      buttonLeft.classList.add("choosed");
+      buttonCenter.classList.add("notchoosed");
+      buttonRight.classList.add("notchoosed");
+      buttonLeft.classList.remove("notchoosed");
+      buttonCenter.classList.remove("choosed");
+      buttonRight.classList.remove("choosed");
+      buttonLeft.classList.remove("button-item1");
+      buttonCenter.classList.remove("button-item1");
+      buttonRight.classList.remove("button-item1");
+
+      listLeft.style.display = 'block';
+      listCenter.style.display = 'none';
+      listRight.style.display = 'none';
+  });
+
+  buttonCenter.addEventListener('click', () => {
+    buttonLeft.classList.add("notchoosed");
+    buttonCenter.classList.add("choosed");
+    buttonRight.classList.add("notchoosed");
+    buttonLeft.classList.remove("choosed");
+    buttonCenter.classList.remove("notchoosed");
+    buttonRight.classList.remove("choosed");
+    buttonLeft.classList.remove("button-item1");
+    buttonCenter.classList.remove("button-item1");
+    buttonRight.classList.remove("button-item1");
+
+    listLeft.style.display = 'none';
+    listCenter.style.display = 'block';
+    listRight.style.display = 'none';
+});
+
+  buttonRight.addEventListener('click', () => {
+    buttonLeft.classList.add("notchoosed");
+    buttonCenter.classList.add("notchoosed");
+    buttonRight.classList.add("choosed");
+    buttonLeft.classList.remove("choosed");
+    buttonCenter.classList.remove("choosed");
+    buttonRight.classList.remove("notchoosed");
+    buttonLeft.classList.remove("button-item1");
+    buttonCenter.classList.remove("button-item1");
+    buttonRight.classList.remove("button-item1");
+
+    listLeft.style.display = 'none';
+    listCenter.style.display = 'none';
+    listRight.style.display = 'block';
+  });
+
+</script>
+{% endblock %}

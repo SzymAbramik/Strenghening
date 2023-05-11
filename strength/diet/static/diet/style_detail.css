@@ -1,0 +1,166 @@
+body{
+  background: linear-gradient(90deg, rgba(255,69,0,1) 0%, rgba(255, 165, 0,1) 100%) !important;
+}
+
+.padding-bottom{
+  height: 14vh;
+}
+
+.container-fluid{
+  margin-top: 5vh !important;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 20px 24px 0 rgba(0, 0, 0, 0.2), 0 21px 35px 0 rgba(0, 0, 0, 0.19);
+  width: 70%;
+  height: auto;
+  min-height: 80vh;
+  display: grid;
+  padding: 0;
+}
+
+@media screen and (max-width: 992px){ 
+  .container-fluid{
+    min-height: 60vh;
+  }
+}
+
+.diet-image img{
+  margin-top: 10%;
+  margin-bottom: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  width: 80%;
+}
+
+.diet-info{
+  padding-top: 55px;
+  padding-left: 50px;
+}
+
+.diet-info h3{
+  font-size: 40px;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.diet-info a{
+  margin-bottom: 10px;
+  color: orangered;
+  font-weight: 550;
+}
+
+.diet-info a:hover{
+  color: black;
+  text-decoration: none;
+}
+
+.diet-info p{
+  margin-bottom: 10px;
+}
+
+.padding-top{
+  height: 10vh;
+}
+
+/* Hide Radio button */
+.rate > input{
+    display: none;
+  }
+  
+  .rate{
+    display: inline-block;;
+    border: 0;
+  }
+  
+  .rate > label{
+    float: right;
+  }
+  
+  /* Showing the stars */
+  .rate > label:before{
+    display: inline-block;
+    font-size: 1.1rem;
+    font-family: FontAwesome;
+    content: "\f005";
+    margin:0;
+    padding:0.3rem .2rem;
+    cursor: pointer;
+  }
+  
+  /* Half star */
+  .rate .half:before{
+    content: "\f089";
+    position: absolute;
+    padding-right: 0;
+  }
+  
+  /* Click and hover */
+  input:checked ~ label, label:hover ~ label{
+    color: orangered;
+  }
+  
+  /* hover hightlight */
+  input:checked + label:hover, input:checked ~ label:hover,input:checked ~ label:hover ~ label,
+  label:hover ~ input:checked ~ label{
+    color: orangered;
+  }
+
+.fa{
+  color: orangered;
+}
+
+.diet-context h1{
+  padding-top: 30px;
+  padding-left: 40px;
+}
+
+.diet-context p{
+  padding: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.comment-like{
+  margin-top: 5px;
+  background-color: orangered;
+  color: white;
+  transition: 0.5s;
+  border-radius: 15px;
+  padding: 7px;
+  padding-left: 13px;
+  padding-right: 13px;
+  border: 0;
+}
+
+.comment-like:hover{
+  background-color: rgba(255,69,0,0.7) !important;
+}
+
+textarea .review{
+  margin-top: 15px;
+}
+
+textarea:hover{
+  border-color: orangered !important;
+}
+
+.contex{
+  padding-left: 40px;
+  padding-top: 10px;
+}
+
+.contex-image{
+  padding-left: 40px;
+  padding-top: 20px;
+}
+
+.contex-stats{
+  padding-left: 40px;
+  color: grey;
+}
+
+.form-control:focus{
+	border-color: black !important;
+	box-shadow: none !important;
+}

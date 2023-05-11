@@ -1,0 +1,62 @@
+{% extends 'home/base.html' %}
+
+{% block head %}
+    {% load static %}
+    <link href="{% static 'forum/style.css' %}" rel="stylesheet" >
+{% endblock %}
+{% block body %}
+<div class="padding-top"></div>
+<div class="container-fluid">
+    <div class="justify-content-center">
+      <div class="text-center">
+        <h1>FORUM</h1>
+        <p>This is forum section where you can ask questions and help other people by answearing their question.
+          {% if user.is_authenticated %} 
+          If you wanna ask <a href="{% url 'forum:add' %}">clik here</a>.
+          {% else %}
+          If you wanna first you have to <a href="{% url 'login:login' %}">login</a>.
+          {% endif %}
+        </p>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Question</th>
+            <th scope="col">Activity</th>
+            <th scope="col">Stats</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for post in posts %}
+            <tr>
+              <td><img class="rounded-circle profile-picture" src="{{ post.author.image.url }}"></td>
+              <td><h5><a href="{{ post.get_absolute_url }}">{{ post.name }}</a></h5><p class="fifty-chars">{{ post.context }}</p></td>
+              <td class="activity">{{ post.comments.all.count }}</td>
+              <td>Posted by <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a><br>{{ post.start_date }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <!-- PAGINATOR -->
+      <nav aria-label="page-navigation">
+        <ul class="pagination justify-content-center">
+          {% if posts.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1"><span aria-hidden="true">&laquo;</span></a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}"><span aria-hidden="true">&lsaquo;</span></a></li>
+          {% endif %}
+        
+          {% for i in posts.paginator.page_range %}
+            <li class="{% if posts.number == i %}active {% endif %}page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+          {% endfor %}
+
+          {% if posts.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}"><span aria-hidden="true">&rsaquo;</span></a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ posts.paginator.num_pages }}"><span aria-hidden="true">&raquo;</span></a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+</div>
+<div class="padding-bottom"></div>
+{% endblock %}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Strenghening</title>
+
+    {% load static %}
+    <!-- Bootstrap and JQuery -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+    <!-- Our project just needs Font Awesome Free's Solid and Brand files -->
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'home/style.css' %}" rel="stylesheet" >
+    {% block head %}
+
+    {% endblock %}
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
+        <a class="navbar-brand" href="{% url 'home:index' %}">
+            <i class="fa-solid fa-dumbbell"></i>&nbsp; Strenghening
+        </a>
+        <!--Navbar toggler button-->
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--Elements of navbar-->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="mx-auto"></div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'home:index' %}">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'forum:index' %}">FORUM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'diet:index' %}">DIET</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'training:index' %}">TRAINING</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'bmicalc:index' %}">BMI CALKULATOR</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'login:profile' user.profile.slug %}">
+                                <img
+                                    src="{{ user.profile.image.url }}"
+                                    class="rounded-circle"
+                                    height="25"
+                                    alt="Black and White Portrait of a Man"
+                                    loading="lazy"
+                                />
+                                {{request.user}}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'login:logout' %}">
+                                <i class="fa-solid fa-power-off"></i>&nbsp; LOGOUT &nbsp;
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'login:login' %}" class="nav-link text-white" tabindex="-1" role="button" aria-disabled="true">SIGN IN</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block body %}
+
+    {% endblock %}
+
+    <section class="footer">
+        <h1>Webside made for IT project
+          <br>
+          © COPYRIGHT Szymon Abramik, Remigiusz Abramik 2022-2023r.
+        </h1>
+    </section>
+
+    <script type="text/javascript">
+        var nav = document.querySelector('nav');
+        
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset > 50) {
+            nav.classList.add('nav-black', 'shadow');
+            } else {
+            nav.classList.remove('nav-black', 'shadow');
+            }
+        });
+    </script>      
+</body>
+</html>

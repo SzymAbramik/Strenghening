@@ -1,0 +1,60 @@
+{% extends 'home/base.html' %}
+
+{% block head %}
+    {% load static %}
+    <link href="{% static 'training/style.css' %}" rel="stylesheet" >
+{% endblock %}
+{% block body %}
+<div class="padding-top"></div>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+    {% for training in trainings %}
+        <div class="col-lg-3 col-12 training-card">
+            <div class="row training-image">
+                <img class="picture" src="{{ training.image.url }}">
+                <div class="layer">
+                    <p>{{ training.cut_context }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 profile-image">
+                    <div class="row justify-content-center"><img class="profile-picture rounded-circle" src="{{ training.author.profile.image.url }}"></div>
+                </div>
+                <div class="col-9">
+                    <div class="row training-title">
+                        <h3><a href="{% url 'training:detail' training.id %}">{{ training.name }}</a></h3>
+                    </div>
+                    <div class="row training-author">
+                        <a href="{{ training.author.profile.get_absolute_url }}">{{ training.author }}</a>
+                    </div>
+                    <div class="row training-date">
+                        <p>{{ training.date }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+     <!-- PAGINATOR -->
+    <div class="row justify-content-center">
+        <nav aria-label="page-navigation">
+            <ul class="pagination justify-content-center">
+            {% if trainings.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1"><span aria-hidden="true">&laquo;</span></a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ trainings.previous_page_number }}"><span aria-hidden="true">&lsaquo;</span></a></li>
+            {% endif %}
+            
+            {% for i in trainings.paginator.page_range %}
+                <li class="{% if trainings.number == i %}active {% endif %}page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+            {% endfor %}
+
+            {% if trainings.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ trainings.next_page_number }}"><span aria-hidden="true">&rsaquo;</span></a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ trainings.paginator.num_pages }}"><span aria-hidden="true">&raquo;</span></a></li>
+            {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="padding-bottom"></div>
+{% endblock %}

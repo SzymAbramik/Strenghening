@@ -1,0 +1,102 @@
+{% extends 'home/base.html' %}
+
+{% block head %}
+    {% load static %}
+    <link href="{% static 'training/style_detail.css' %}" rel="stylesheet" >
+{% endblock %}
+
+{% block body %}
+<div class="padding-top"></div>
+<div class="container-fluid">
+    <div class="col">
+        <div class="row border-bottom">
+            <div class="col-4 training-image">
+                <div class="row justify-content-center border-right"><img class="picture" src="{{ training.image.url }}"></div>
+            </div>
+            <div class="col-8 training-info">
+                <div class="row">
+                    <h3>{{ training.name }}</h3>
+                </div>
+                <div class="row">
+                    <img
+                        src="{{ training.author.profile.image.url }}"
+                        class="rounded-circle"
+                        height="25"
+                        alt="Black and White Portrait of a Man"
+                        loading="lazy"
+                        /> &nbsp; &nbsp;<a href="{{training.author.profile.get_absolute_url}}">{{ training.author.username }}</a>
+                </div>
+                <div class="row">
+                    <p>{{training.date}}</p>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row training-context border-bottom">
+            <div class="col">
+                <div class="row">
+                    <h1>Description:</h1>
+                </div>
+                <div class="row">
+                    <p>{{training.context}}</p>
+                </div>
+            </div>
+        </div>
+        {% if not reviews %}
+            <div class="row justify-content-center" style="padding:20px;padding-bottom:0;"><h3> No reviews yet. You can add yours first now!!</h3></div>
+        {% else %}
+            {% for review in reviews %}
+            <div class="row reviews border-bottom">
+                <div class="col">
+                    <div class="row contex-image">
+                        <img
+                            src="{{ review.author.image.url }}"
+                            class="rounded-circle"
+                            height="25"
+                            alt="Black and White Portrait of a Man"
+                            loading="lazy"
+                        /> &nbsp;&nbsp;<p>{{ review.author.user.username }}</p>  &nbsp; <span>
+                            <i class="fa fa-star{% if review.rating == 0.5 %}-half-o{% elif review.rating < 1 %}-o {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if review.rating == 1.5 %}-half-o{% elif review.rating < 2 %}-o {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if review.rating == 2.5 %}-half-o{% elif review.rating < 3 %}-o {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if review.rating == 3.5 %}-half-o{% elif review.rating < 4 %}-o {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if review.rating == 4.5 %}-half-o{% elif review.rating < 5 %}-o {% endif %}" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="row contex">
+                        <p>{{review.context}}</p>
+                    </div>
+                    <div class="row contex-stats">
+                        <p>{{review.date}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+        <div class="row justify-content-center" style="padding-top:40px;padding-bottom:40px;">
+            <form action="{% url 'training:submit_review' training.id %}" method="POST">
+                {% csrf_token %}
+                <textarea name="context" cols="50" class="form-control review" rows="3" maxlength="1000" required="" id="id_context" required placeholder="Write your opinion here!!"></textarea>
+                <div class="rate">
+                    <input type="radio" name="rating" id="rating10" value="5" required /><label for="rating10" title="5"></label>
+                    <input type="radio" name="rating" id="rating9" value="4.5" required /><label for="rating9" title="4.5" class="half"></label>
+                    <input type="radio" name="rating" id="rating8" value="4" required /><label for="rating8" title="4"></label>
+                    <input type="radio" name="rating" id="rating7" value="3.5" required /><label for="rating7" title="3.5" class="half"></label>
+                    <input type="radio" name="rating" id="rating6" value="3"  /><label for="rating6" title="3"></label>
+                    <input type="radio" name="rating" id="rating5" value="2.5" required /><label for="rating5" title="2.5" class="half"></label>
+                    <input type="radio" name="rating" id="rating4" value="2" required /><label for="rating4" title="2"></label>
+                    <input type="radio" name="rating" id="rating3" value="1.5" required /><label for="rating3" title="1.5" class="half"></label>
+                    <input type="radio" name="rating" id="rating2" value="1" required /><label for="rating2" title="1"></label>
+                    <input type="radio" name="rating" id="rating1" value="0.5" required /><label for="rating1" title="0.5" class="half"></label>
+                </div>
+                {% if user.is_authenticated %}
+                    <input type="submit" value="Submit Review" class="comment-like float-right">
+                {% else %}
+                    <p>You must be logged in to post a review. <span><a href="{% url 'login:login' %}">Login now</a></span></p>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+<div class="padding-bottom"></div>
+{% endblock %}

@@ -1,0 +1,79 @@
+@media screen and (max-width: 992px){ 
+        .padding-bottom{
+                height:33vh !important;
+        }
+        .padding-top{
+                height:18vh !important;
+        }
+}
+
+
+.padding-top{
+        height:14vh;
+}
+
+.padding-bottom{
+        height:10vh;
+}
+
+body{
+        background: linear-gradient(90deg, rgba(255,69,0,1) 0%, rgba(255, 165, 0,1) 100%);
+}
+
+.container-fluid{
+        width: 80%;
+        background-color: white;
+        border-radius: 50px;
+        box-shadow: 0 20px 24px 0 rgba(0, 0, 0, 0.2), 0 21px 35px 0 rgba(0, 0, 0, 0.19);
+        margin-top: 10vh;
+        height: auto;
+        padding: 30px;
+}
+
+.comment-like{
+        margin-top: 10px;
+        background-color: orangered;
+        color: white;
+        transition: 0.5s;
+        border-radius: 15px;
+        padding: 7px;
+        padding-left: 13px;
+        padding-right: 13px;
+        border: 0;
+}
+
+.comment-like:hover{
+        background-color: rgba(255,69,0,0.7) !important;
+}
+
+.stats-likes p{
+        margin-top: 10px !important;
+}
+
+.comment-stats{
+        font-size: 15px;
+        font-weight: 550;
+}
+
+.comment-stats a{
+        color: orangered;
+}
+
+.comment-stats a:hover{
+        color: black;
+        text-decoration: none;
+}
+
+textarea:hover{
+        border-color: orangered !important;
+}
+
+.auth a{
+        color: orangered;
+        font-weight: 550;
+}
+
+.auth a:hover{
+        text-decoration: none;
+        color: black;
+}

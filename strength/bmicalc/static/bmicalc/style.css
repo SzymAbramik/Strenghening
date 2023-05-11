@@ -1,0 +1,86 @@
+body{
+	background: linear-gradient(90deg, rgba(255,69,0,1) 0%, rgba(255, 165, 0,1) 100%);
+}
+
+@media screen and (max-width: 992px){ 
+        .padding-top{
+                height: 36vh !important;
+        }
+        .padding-bottom{
+                height: 33vh !important;
+        }
+
+}
+
+
+.tab-bmi {
+	width: 650px;
+	margin-top: auto;
+	margin-bottom: auto;
+	background: white;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 50px;
+	color: black;
+	padding-top: 70px;
+	padding-bottom: 40px;
+}
+
+.padding-top{
+        height: 25vh;
+}
+
+.padding-bottom{
+        height: 21vh;
+}
+
+.tab-bmi h3{
+        text-align: center;
+        font-weight: 600;
+        font-size: 40px;
+}
+
+.submit-button{
+        margin-top: 10px;
+        background-color: orangered;
+        color: white;
+        transition: 0.5s;
+        border-radius: 15px;
+        padding: 7px;
+        padding-left: 13px;
+        padding-right: 13px;
+        border: 0;
+}
+
+.submit-button:hover{
+        background-color: rgba(255,69,0,0.7) !important;
+}
+
+.form-control:hover{
+        border-color: orangered;
+}
+
+.form-control:focus{
+	border-color: black !important;
+	box-shadow: none !important;
+}
+
+.result{
+        margin-top: 50px;
+        border-radius: 30px;
+        padding: 20px;
+        border: 3px solid orangered;
+}
+
+.result p{
+        margin-bottom: 0;
+        font-weight: 550;
+        font-size: 16px;
+}
+
